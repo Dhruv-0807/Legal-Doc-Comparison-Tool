@@ -1,0 +1,30 @@
+# --- Core ---
+pydantic>=2.6           # data contract / structured validation across stages
+pyyaml>=6.0             # config.yaml
+python-dotenv>=1.0      # load API keys from .env
+
+# --- LLM (Step 5) ---
+anthropic>=0.40         # Claude API client (structured JSON via tool use)
+
+# --- Ingestion + OCR (Step 2) ---
+pdfplumber>=0.11        # text + layout extraction from text-based PDFs
+pypdf>=4.0              # PDF utilities / page handling / fallback
+python-docx>=1.1        # Word (.docx) extraction
+pytesseract>=0.3.10     # OCR wrapper (needs system Tesseract binary)
+pdf2image>=1.17         # render scanned PDF pages to images (needs Poppler)
+Pillow>=10.0            # image handling for OCR
+
+# --- Deterministic alignment (Step 4) ---
+rapidfuzz>=3.6          # fast fuzzy string matching
+sentence-transformers>=2.7  # local embeddings (no API, reproducible) -- heaviest dep
+scipy>=1.11             # optimal assignment (Hungarian) for clause matching
+numpy>=1.26
+
+# --- UI (Step 6) ---
+streamlit>=1.33
+
+# --- Sample/eval data generation (Step 7) ---
+reportlab>=4.0          # render public templates to PDF to build test pairs
+
+# --- Misc ---
+pandas>=2.0             # tabular handling in eval / UI

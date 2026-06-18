@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Local model / OCR caches
+.cache/
+*.log
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Data: keep folder structure, ignore bulky generated artifacts.
+# (Originals in data/templates are kept; generated samples are reproducible.)
+data/samples/*
+!data/samples/.gitkeep

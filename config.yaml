@@ -1,0 +1,29 @@
+# Tunable, non-secret settings. Secrets live in .env (see .env.example).
+# Every stage reads its knobs from here so behaviour is auditable and reproducible.
+
+ingestion:
+  ocr_enabled: true          # fall back to OCR when a PDF has no extractable text
+  ocr_language: "eng"        # Tesseract language code
+  # A page yielding fewer than this many chars is treated as scanned -> OCR.
+  min_chars_per_page_for_text: 50
+
+segmentation:
+  # How aggressively to split. Clause-level granularity is the comparison unit.
+  min_clause_chars: 30       # merge fragments shorter than this into neighbours
+
+alignment:
+  # Deterministic matching thresholds (Step 4). Tuned later against the eval set.
+  fuzzy_match_threshold: 90      # rapidfuzz score (0-100): near-identical -> unchanged
+  embedding_match_threshold: 0.60  # cosine sim floor to consider two clauses "the same clause"
+  embedding_model: "all-MiniLM-L6-v2"  # local sentence-transformers model
+
+comparison:
+  # LLM is used ONLY on matched pairs (Step 5).
+  model: "claude-sonnet-4-6"   # default model id for change explanation + risk flagging
+  max_tokens: 1024
+  temperature: 0               # deterministic-as-possible explanations
+  # Skip the LLM entirely for pairs the deterministic layer marks identical.
+  skip_llm_on_identical: true
+
+ui:
+  title: "Legal Document Comparison Tool"

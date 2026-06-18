@@ -1,0 +1,15 @@
+# Streamlit app configuration for the Legal Document Comparison Tool.
+
+[theme]
+# Pin a clean light theme. The side-by-side cells use light backgrounds with
+# dark text (paper-like), so we don't want the OS dark mode flipping the text
+# colour and making it unreadable.
+base = "light"
+
+[client]
+# "minimal" hides the Deploy button and the developer menu (incl. "Record a
+# screencast") — we don't need those for a local review tool.
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
